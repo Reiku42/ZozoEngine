@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZozoEngine", "ZozoEngine.csproj", "{c5dd71aa-8c58-be8f-ebc5-2660ab74bcea}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZozoEngine.Tests", "ZozoEngine.Tests.csproj", "{752d016b-14f6-70e8-91b6-161d5df30320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{2e8c5c7e-e988-2d4f-ff77-ee39af04d870}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{c5dd71aa-8c58-be8f-ebc5-2660ab74bcea}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{c5dd71aa-8c58-be8f-ebc5-2660ab74bcea}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752d016b-14f6-70e8-91b6-161d5df30320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752d016b-14f6-70e8-91b6-161d5df30320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2e8c5c7e-e988-2d4f-ff77-ee39af04d870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2e8c5c7e-e988-2d4f-ff77-ee39af04d870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
