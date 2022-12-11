@@ -1,4 +1,3 @@
-using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -57,15 +56,97 @@ namespace ZozoEngine.Tests.Tests
         }
 
         [Test]
-        public void Checks_position_that_is_not_in_bounds()
+        public void Checks_position_that_is_not_in_bounds_to_the_left()
         {
             var size = new Vector2Int(10, 10);
             var map = new Map(size);
 
-            Assert.That(map.IsInBounds(new Vector2Int(-1, 0)), Is.False);
-            Assert.That(map.IsInBounds(new Vector2Int(0, -1)), Is.False);
-            Assert.That(map.IsInBounds(new Vector2Int(size.x, 0)), Is.False);
-            Assert.That(map.IsInBounds(new Vector2Int(0, size.y)), Is.False);
+            var left = new Vector2Int(-1, 0);
+            Assert.That(map.IsInBounds(left), Is.False);
+        }
+
+        [Test]
+        public void Checks_position_that_is_not_in_bounds_to_the_bottom()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var bottom = new Vector2Int(0, -1);
+            Assert.That(map.IsInBounds(bottom), Is.False);
+        }
+
+        [Test]
+        public void Checks_position_that_is_not_in_bounds_to_the_right()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var right = new Vector2Int(10, 9);
+            Assert.That(map.IsInBounds(right), Is.False);
+        }
+
+        [Test]
+        public void Checks_position_that_is_not_in_bounds_to_the_top()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var top = new Vector2Int(9, 10);
+            Assert.That(map.IsInBounds(top), Is.False);
+        }
+
+        [Test]
+        public void Clamps_position_that_is_not_in_bounds_to_the_left()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var left = new Vector2Int(-1, 0);
+            var min = new Vector2Int(0, 0);
+            Assert.That(map.ClampToBounds(left), Is.EqualTo(min));
+        }
+
+        [Test]
+        public void Clamps_position_that_is_not_in_bounds_to_the_bottom()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var bottom = new Vector2Int(0, -1);
+            var min = new Vector2Int(0, 0);
+            Assert.That(map.ClampToBounds(bottom), Is.EqualTo(min));
+        }
+
+        [Test]
+        public void Clamps_position_that_is_not_in_bounds_to_the_right()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var right = new Vector2Int(10, 9);
+            var max = new Vector2Int(9, 9);
+            Assert.That(map.ClampToBounds(right), Is.EqualTo(max));
+        }
+
+        [Test]
+        public void Clamps_position_that_is_not_in_bounds_to_the_top()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var top = new Vector2Int(9, 10);
+            var max = new Vector2Int(9, 9);
+            Assert.That(map.ClampToBounds(top), Is.EqualTo(max));
+        }
+
+        [Test]
+        public void Does_not_clamp_position_that_is_already_in_bounds()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var position = new Vector2Int(5, 5);
+            Assert.That(map.ClampToBounds(position), Is.EqualTo(position));
         }
 
         [Test]
@@ -92,42 +173,6 @@ namespace ZozoEngine.Tests.Tests
             cell.IsTransparent = true;
 
             Assert.That(map.IsTransparent(position), Is.True);
-        }
-
-        [Test]
-        public void Gets_cells_along_line()
-        {
-            var size = new Vector2Int(10, 10);
-            var map = new Map(size);
-
-            var start = new Vector2Int(0, 1);
-            var end = new Vector2Int(6, 4);
-            var line = map.GetLine(start, end).ToList();
-
-            Assert.That(line[0].Position, Is.EqualTo(new Vector2Int(0, 1)));
-            Assert.That(line[1].Position, Is.EqualTo(new Vector2Int(1, 1)));
-            Assert.That(line[2].Position, Is.EqualTo(new Vector2Int(2, 2)));
-            Assert.That(line[3].Position, Is.EqualTo(new Vector2Int(3, 2)));
-            Assert.That(line[4].Position, Is.EqualTo(new Vector2Int(4, 3)));
-            Assert.That(line[5].Position, Is.EqualTo(new Vector2Int(5, 3)));
-            Assert.That(line[6].Position, Is.EqualTo(new Vector2Int(6, 4)));
-        }
-        
-        [Test]
-        public void Gets_cells_along_line_clamped()
-        {
-            var size = new Vector2Int(5, 5);
-            var map = new Map(size);
-
-            var start = new Vector2Int(-1, 01);
-            var end = new Vector2Int(6, 6);
-            var line = map.GetLine(start, end).ToList();
-
-            Assert.That(line[0].Position, Is.EqualTo(new Vector2Int(0, 0)));
-            Assert.That(line[1].Position, Is.EqualTo(new Vector2Int(1, 1)));
-            Assert.That(line[2].Position, Is.EqualTo(new Vector2Int(2, 2)));
-            Assert.That(line[3].Position, Is.EqualTo(new Vector2Int(3, 3)));
-            Assert.That(line[4].Position, Is.EqualTo(new Vector2Int(4, 4)));
         }
     }
 }

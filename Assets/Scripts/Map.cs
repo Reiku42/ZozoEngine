@@ -58,27 +58,20 @@ namespace ZozoEngine
         /// <returns>True if the position is within the bounds of the map.</returns>
         public bool IsInBounds(Vector2Int position)
         {
-            if (position.x < 0)
-            {
-                return false;
-            }
+            return position.x >= 0 && position.x < Size.x && position.y >= 0 && position.y < Size.y;
+        }
 
-            if (position.x >= Size.x)
-            {
-                return false;
-            }
-
-            if (position.y < 0)
-            {
-                return false;
-            }
-
-            if (position.y >= Size.y)
-            {
-                return false;
-            }
-
-            return true;
+        /// <summary>
+        /// Clamps the given position so it is contained within the bounds of the map.
+        /// </summary>
+        /// <param name="position">The position to clamp.</param>
+        /// <returns>The position clamped to the bounds of the map.</returns>
+        public Vector2Int ClampToBounds(Vector2Int position)
+        {
+            var max = Size - Vector2Int.one;
+            var x = Mathf.Clamp(position.x, 0, max.x);
+            var y = Mathf.Clamp(position.y, 0, max.y);
+            return new Vector2Int(x, y);
         }
 
         /// <summary>
