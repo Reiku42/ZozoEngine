@@ -43,6 +43,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Tests\MapTests.cs" />
      <Compile Include="Assets\Scripts\Tests\CellTests.cs" />
+     <Compile Include="Assets\Scripts\Tests\MapEnumeratorTests.cs" />
      <Folder Include="Assets\Scripts\Tests" />
      <None Include="Assets\Scripts\Tests\ZozoEngine.Tests.asmdef" />
      <Reference Include="UnityEngine">

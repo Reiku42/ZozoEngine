@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ZozoEngine
 {
     /// <summary>
-    /// Map is a rectangular grid of cells.
+    /// Map represents a rectangular grid of cells.
     /// </summary>
     public sealed class Map
     {
@@ -169,6 +169,15 @@ namespace ZozoEngine
         public bool IsTransparent(Vector2Int position)
         {
             return IsTransparent(position.x, position.y);
+        }
+
+        /// <summary>
+        /// Enumerates all cells in the map.
+        /// </summary>
+        /// <returns>An enumerator that will iterate over every cell in the map.</returns>
+        public MapEnumerator GetAllCells()
+        {
+            return new MapEnumerator(this);
         }
     }
 }
