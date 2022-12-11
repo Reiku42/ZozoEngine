@@ -150,6 +150,7 @@ namespace ZozoEngine
                     originX += sx;
                 }
 
+                // ReSharper disable once InvertIf
                 if (e2 < dx)
                 {
                     err += dx;

@@ -112,5 +112,22 @@ namespace ZozoEngine.Tests.Tests
             Assert.That(line[5].Position, Is.EqualTo(new Vector2Int(5, 3)));
             Assert.That(line[6].Position, Is.EqualTo(new Vector2Int(6, 4)));
         }
+        
+        [Test]
+        public void Gets_cells_along_line_clamped()
+        {
+            var size = new Vector2Int(5, 5);
+            var map = new Map(size);
+
+            var start = new Vector2Int(-1, 01);
+            var end = new Vector2Int(6, 6);
+            var line = map.GetLine(start, end).ToList();
+
+            Assert.That(line[0].Position, Is.EqualTo(new Vector2Int(0, 0)));
+            Assert.That(line[1].Position, Is.EqualTo(new Vector2Int(1, 1)));
+            Assert.That(line[2].Position, Is.EqualTo(new Vector2Int(2, 2)));
+            Assert.That(line[3].Position, Is.EqualTo(new Vector2Int(3, 3)));
+            Assert.That(line[4].Position, Is.EqualTo(new Vector2Int(4, 4)));
+        }
     }
 }
