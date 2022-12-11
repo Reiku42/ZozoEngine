@@ -10,39 +10,18 @@ namespace ZozoEngine
         /// <summary>
         /// Creates a new cell for the given position.
         /// </summary>
-        /// <param name="x">The x position of the cell.</param>
-        /// <param name="y">The y position of the cell.</param>
-        public Cell(int x, int y)
+        /// <param name="position">The position of the cell.</param>
+        public Cell(Vector2Int position)
         {
-            X = x;
-            Y = y;
+            Position = position;
             IsWalkable = false;
             IsTransparent = false;
         }
 
         /// <summary>
-        /// Creates a new cell for the given position.
-        /// </summary>
-        /// <param name="position">The position of the cell.</param>
-        public Cell(Vector2Int position)
-            : this(position.x, position.y)
-        {
-        }
-
-        /// <summary>
-        /// The x position of the cell.
-        /// </summary>
-        public int X { get; }
-
-        /// <summary>
-        /// The y position of the cell.
-        /// </summary>
-        public int Y { get; }
-
-        /// <summary>
         /// The position of the cell.
         /// </summary>
-        public Vector2Int Position => new(X, Y);
+        public Vector2Int Position { get; }
 
         /// <summary>
         /// True if a character is capable of walking through this cell.

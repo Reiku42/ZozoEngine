@@ -1,3 +1,4 @@
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -8,103 +9,72 @@ namespace ZozoEngine.Tests.Tests
         [Test]
         public void Initializes_size()
         {
-            const int width = 5;
-            const int height = 5;
-            var size = new Vector2Int(width, height);
+            var size = new Vector2Int(5, 5);
 
             var map = new Map(size);
 
-            Assert.That(map.Width, Is.EqualTo(width));
-            Assert.That(map.Height, Is.EqualTo(height));
             Assert.That(map.Size, Is.EqualTo(size));
         }
 
         [Test]
         public void Initializes_all_cell_positions()
         {
-            const int width = 5;
-            const int height = 5;
-            var size = new Vector2Int(width, height);
-
+            var size = new Vector2Int(5, 5);
             var map = new Map(size);
 
-            for (var y = 0; y < height; y++)
+            for (var y = 0; y < size.y; y++)
             {
-                for (var x = 0; x < width; x++)
+                for (var x = 0; x < size.x; x++)
                 {
                     var position = new Vector2Int(x, y);
                     var cell = map[position];
-                    Assert.That(cell.X, Is.EqualTo(x));
-                    Assert.That(cell.Y, Is.EqualTo(y));
                     Assert.That(cell.Position, Is.EqualTo(position));
                 }
             }
         }
 
         [Test]
-        public void Indexes_into_center_cell()
-        {
-            var map = new Map(10, 10);
-
-            const int x = 5;
-            const int y = 5;
-            var position = new Vector2Int(x, y);
-            
-            var origin = map[x, y];
-            
-            Assert.That(origin.X, Is.EqualTo(x));
-            Assert.That(origin.Y, Is.EqualTo(y));
-            Assert.That(origin.Position, Is.EqualTo(position));
-        }
-
-        [Test]
         public void Gets_center_cell()
         {
-            var map = new Map(10, 10);
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
 
-            const int x = 0;
-            const int y = 0;
-            var position = new Vector2Int(x, y);
-            var origin = map.GetCell(position);
+            var position = new Vector2Int(5, 5);
+            var origin = map[position];
 
-            Assert.That(origin.X, Is.EqualTo(x));
-            Assert.That(origin.Y, Is.EqualTo(y));
             Assert.That(origin.Position, Is.EqualTo(position));
         }
 
         [Test]
         public void Checks_if_position_is_in_bounds()
         {
-            var map = new Map(10, 10);
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
 
             var position = new Vector2Int(5, 5);
-            
+
             Assert.That(map.IsInBounds(position), Is.True);
         }
 
         [Test]
         public void Checks_position_that_is_not_in_bounds()
         {
-            const int width = 10;
-            const int height = 10;
-            
-            var map = new Map(width, height);
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
 
-            Assert.That(map.IsInBounds(-1, 0), Is.False);
-            Assert.That(map.IsInBounds(0, -1), Is.False);
-            Assert.That(map.IsInBounds(width, 0), Is.False);
-            Assert.That(map.IsInBounds(0, height), Is.False);
+            Assert.That(map.IsInBounds(new Vector2Int(-1, 0)), Is.False);
+            Assert.That(map.IsInBounds(new Vector2Int(0, -1)), Is.False);
+            Assert.That(map.IsInBounds(new Vector2Int(size.x, 0)), Is.False);
+            Assert.That(map.IsInBounds(new Vector2Int(0, size.y)), Is.False);
         }
 
         [Test]
         public void Checks_if_cell_is_walkable()
         {
-            var map = new Map(20, 30);
+            var size = new Vector2Int(20, 30);
+            var map = new Map(size);
 
-            const int x = 10;
-            const int y = 15;
-            var position = new Vector2Int(x, y);
-
+            var position = new Vector2Int(10, 15);
             ref var cell = ref map[position];
             cell.IsWalkable = true;
 
@@ -114,16 +84,33 @@ namespace ZozoEngine.Tests.Tests
         [Test]
         public void Checks_if_cell_is_transparent()
         {
-            var map = new Map(20, 30);
+            var size = new Vector2Int(20, 30);
+            var map = new Map(size);
 
-            const int x = 10;
-            const int y = 15;
-            var position = new Vector2Int(x, y);
-
+            var position = new Vector2Int(10, 15);
             ref var cell = ref map[position];
             cell.IsTransparent = true;
 
             Assert.That(map.IsTransparent(position), Is.True);
+        }
+
+        [Test]
+        public void Gets_cells_along_line()
+        {
+            var size = new Vector2Int(10, 10);
+            var map = new Map(size);
+
+            var start = new Vector2Int(0, 1);
+            var end = new Vector2Int(6, 4);
+            var line = map.GetLine(start, end).ToList();
+
+            Assert.That(line[0].Position, Is.EqualTo(new Vector2Int(0, 1)));
+            Assert.That(line[1].Position, Is.EqualTo(new Vector2Int(1, 1)));
+            Assert.That(line[2].Position, Is.EqualTo(new Vector2Int(2, 2)));
+            Assert.That(line[3].Position, Is.EqualTo(new Vector2Int(3, 2)));
+            Assert.That(line[4].Position, Is.EqualTo(new Vector2Int(4, 3)));
+            Assert.That(line[5].Position, Is.EqualTo(new Vector2Int(5, 3)));
+            Assert.That(line[6].Position, Is.EqualTo(new Vector2Int(6, 4)));
         }
     }
 }

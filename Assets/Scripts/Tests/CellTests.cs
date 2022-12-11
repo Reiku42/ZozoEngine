@@ -8,14 +8,10 @@ namespace ZozoEngine.Tests.Tests
         [Test]
         public void Initializes_position()
         {
-            const int x = 20;
-            const int y = 30;
-            var position = new Vector2Int(x, y);
+            var position = new Vector2Int(20, 30);
 
             var cell = new Cell(position);
 
-            Assert.That(cell.X, Is.EqualTo(x));
-            Assert.That(cell.Y, Is.EqualTo(y));
             Assert.That(cell.Position, Is.EqualTo(position));
         }
     }
