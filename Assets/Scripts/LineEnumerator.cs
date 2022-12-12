@@ -55,12 +55,6 @@ namespace ZozoEngine
         object IEnumerator.Current => Current;
 
         /// <summary>
-        /// Gets an enumerator that iterates over all position along a line.
-        /// </summary>
-        /// <returns>An enumerator that iterates over every position along the line.</returns>
-        public LineEnumerator GetEnumerator() => this;
-
-        /// <summary>
         /// Advances the enumerator to the next position along the line.
         /// </summary>
         /// <returns>True if the enumerator still has positions along the line to iterate over.</returns>
