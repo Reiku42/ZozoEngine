@@ -51,7 +51,6 @@ namespace ZozoEngine.Tests.Tests
             var map = new Map(size);
 
             var position = new Vector2Int(5, 5);
-
             Assert.That(map.IsInBounds(position), Is.True);
         }
 

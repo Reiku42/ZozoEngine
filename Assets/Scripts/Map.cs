@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZozoEngine
@@ -68,9 +67,8 @@ namespace ZozoEngine
         /// <returns>The position clamped to the bounds of the map.</returns>
         public Vector2Int ClampToBounds(Vector2Int position)
         {
-            var max = Size - Vector2Int.one;
-            var x = Mathf.Clamp(position.x, 0, max.x);
-            var y = Mathf.Clamp(position.y, 0, max.y);
+            var x = Mathf.Clamp(position.x, 0, Size.x - 1);
+            var y = Mathf.Clamp(position.y, 0, Size.y - 1);
             return new Vector2Int(x, y);
         }
 
@@ -109,47 +107,9 @@ namespace ZozoEngine
         /// <param name="start">The start position of the line.</param>
         /// <param name="end">The end position of the line.</param>
         /// <returns>An enumerator that will iterate over every cell along a line int he map.</returns>
-        public IEnumerable<Cell> GetLine(Vector2Int start, Vector2Int end)
+        public MapLineEnumerator GetCellsAlongLine(Vector2Int start, Vector2Int end)
         {
-            var originX = Mathf.Clamp(start.x, 0, Size.x - 1);
-            var originY = Mathf.Clamp(start.y, 0, Size.y - 1);
-
-            var destinationX = Mathf.Clamp(end.x, 0, Size.x - 1);
-            var destinationY = Mathf.Clamp(end.y, 0, Size.y - 1);
-
-            var dx = Mathf.Abs(end.x - start.x);
-            var dy = Mathf.Abs(end.y - start.y);
-
-            var sx = start.x < end.x ? 1 : -1;
-            var sy = start.y < end.y ? 1 : -1;
-
-            var err = dx - dy;
-
-            while (true)
-            {
-                var current = new Vector2Int(originX, originY);
-                yield return GetCell(current);
-
-                if (originX == destinationX && originY == destinationY)
-                {
-                    break;
-                }
-
-                var e2 = 2 * err;
-
-                if (e2 > -dy)
-                {
-                    err -= dy;
-                    originX += sx;
-                }
-
-                // ReSharper disable once InvertIf
-                if (e2 < dx)
-                {
-                    err += dx;
-                    originY += sy;
-                }
-            }
+            return new MapLineEnumerator(this, start, end);
         }
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 namespace ZozoEngine
 {
     /// <summary>
-    /// Iterates through all of the cells in a map. It starts at the origin (0,0)
-    /// then moves along the x axis before moving along the y axis. 
+    /// Iterates over all of the cells in a map. This enumerator starts at the origin (0, 0)
+    /// of the map, first moving along the x axis before moving along the y axis. 
     /// </summary>
     public struct MapEnumerator : IEnumerator<Cell>
     {
@@ -14,13 +14,15 @@ namespace ZozoEngine
         private Vector2Int _current;
 
         /// <summary>
-        /// Creates a new enumerator for the given map with cells to iterate over.
+        /// Creates a new enumerator that iterates over all cells in the given map.
         /// </summary>
-        /// <param name="map">The map with cells to iterate over.</param>
+        /// <param name="map">The map to enumerate.</param>
         public MapEnumerator(Map map)
         {
             _map = map;
-            _current = Vector2Int.zero;
+
+            _current = default;
+
             Reset();
         }
 
@@ -34,6 +36,12 @@ namespace ZozoEngine
         /// </summary>
         object IEnumerator.Current => Current;
 
+        /// <summary>
+        /// Gets an enumerator that iterates over every cell in the map.
+        /// </summary>
+        /// <returns>An enumerator that iterates over every cell in the map.</returns>
+        public MapEnumerator GetEnumerator() => this;
+        
         /// <summary>
         /// Advances the enumerator to the next cell in the map.
         /// </summary>
@@ -57,8 +65,7 @@ namespace ZozoEngine
         /// </summary>
         public void Reset()
         {
-            _current.x = -1;
-            _current.y = 0;
+            _current = new Vector2Int(-1, 0);
         }
 
         public void Dispose()

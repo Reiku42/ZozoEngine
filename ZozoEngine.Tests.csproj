@@ -41,12 +41,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Tests\MapTests.cs" />
-     <Compile Include="Assets\Scripts\Tests\CellTests.cs" />
-     <Compile Include="Assets\Scripts\Tests\MapEnumeratorTests.cs" />
-     <Compile Include="Assets\Scripts\Tests\MapLineEnumeratorTests.cs" />
-     <Folder Include="Assets\Scripts\Tests" />
-     <None Include="Assets\Scripts\Tests\ZozoEngine.Tests.asmdef" />
+     <Compile Include="Assets\Tests\MapTests.cs" />
+     <Compile Include="Assets\Tests\CellTests.cs" />
+     <Compile Include="Assets\Tests\MapEnumeratorTests.cs" />
+     <Compile Include="Assets\Tests\MapLineEnumeratorTests.cs" />
+     <Folder Include="Assets\Tests" />
+     <None Include="Assets\Tests\ZozoEngine.Tests.asmdef" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.15f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>

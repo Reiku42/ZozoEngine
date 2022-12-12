@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ZozoEngine.Tests.Tests
 {
-    public class MapEnumeratorTests
+    public sealed class MapEnumeratorTests
     {
         [Test]
         public void Enumerates_all_cells()
