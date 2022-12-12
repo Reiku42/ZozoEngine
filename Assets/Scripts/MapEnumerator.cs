@@ -29,19 +29,13 @@ namespace ZozoEngine
         /// <summary>
         /// The current cell the enumerator is iterating over.
         /// </summary>
-        public Cell Current => _map.GetCell(_current);
+        public Cell Current => _map[_current];
 
         /// <summary>
         /// The current cell the enumerator is iterating over.
         /// </summary>
         object IEnumerator.Current => Current;
 
-        /// <summary>
-        /// Gets an enumerator that iterates over every cell in the map.
-        /// </summary>
-        /// <returns>An enumerator that iterates over every cell in the map.</returns>
-        public MapEnumerator GetEnumerator() => this;
-        
         /// <summary>
         /// Advances the enumerator to the next cell in the map.
         /// </summary>

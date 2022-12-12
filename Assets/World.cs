@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -27,14 +26,13 @@ namespace ZozoEngine
             var start = new Vector2Int(0, 1);
             var end = new Vector2Int(6, 4);
 
-            foreach (var cell in _map.GetCellsAlongLine(start, end))
+            foreach (var point in Geometry.GetLine(start, end))
             {
-                var position = cell.Position;
-                ref var actualCell = ref _map.GetCell(position);
-                actualCell.IsWalkable = true;
+                ref var cell = ref _map[point];
+                cell.IsWalkable = true;
             }
 
-            foreach (var cell in _map.GetAllCells())
+            foreach (var cell in _map)
             {
                 var tile = cell.IsWalkable ? _floor : _wall;
                 _tilemap.SetTile((Vector3Int)cell.Position, tile);

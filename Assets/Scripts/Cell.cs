@@ -3,7 +3,7 @@
 namespace ZozoEngine
 {
     /// <summary>
-    /// Cell holds data for a single spot on a map.
+    /// Holds data for a single position on a map.
     /// </summary>
     public struct Cell
     {

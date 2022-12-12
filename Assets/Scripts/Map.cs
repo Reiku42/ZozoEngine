@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ZozoEngine
 {
     /// <summary>
-    /// Map represents a rectangular grid of cells.
+    /// Represents a rectangular grid of cells.
     /// </summary>
     public sealed class Map
     {
@@ -12,7 +12,7 @@ namespace ZozoEngine
         /// <summary>
         /// Creates a new map with the given size.
         /// </summary>
-        /// <param name="size">The width and height of the map.</param>
+        /// <param name="size">The size of the map.</param>
         public Map(Vector2Int size)
         {
             Size = size;
@@ -33,7 +33,7 @@ namespace ZozoEngine
         /// Gets the cell at the given position.
         /// </summary>
         /// <param name="position">The position of the cell to get.</param>
-        public ref Cell this[Vector2Int position] => ref GetCell(position);
+        public ref Cell this[Vector2Int position] => ref _cells[position.x, position.y];
 
         /// <summary>
         /// The size of the map.
@@ -41,14 +41,10 @@ namespace ZozoEngine
         public Vector2Int Size { get; }
 
         /// <summary>
-        /// Gets the cell at the given position.
+        /// Gets an enumerator that iterates over all cells in the map.
         /// </summary>
-        /// <param name="position">The position of the cell to get.</param>
-        /// <returns>The cell at the given position</returns>
-        public ref Cell GetCell(Vector2Int position)
-        {
-            return ref _cells[position.x, position.y];
-        }
+        /// <returns>An enumerator that iterates over all cells in the map</returns>
+        public MapEnumerator GetEnumerator() => new(this);
 
         /// <summary>
         /// Checks if the given position is within the bounds of the map.
@@ -73,43 +69,23 @@ namespace ZozoEngine
         }
 
         /// <summary>
-        /// Checks if the cell at the given position can be walked through by a character.
+        /// Checks if a character is capable of walking through the cell at the given position.
         /// </summary>
         /// <param name="position">The position of the cell to check.</param>
-        /// <returns>True if a character can walk through the cell at the given position.</returns>
+        /// <returns>True if a character is capable of walking through the cell.</returns>
         public bool IsWalkable(Vector2Int position)
         {
             return _cells[position.x, position.y].IsWalkable;
         }
 
         /// <summary>
-        /// Checks if the cell at the given position can be seen through by a character.
+        /// Checks if a character has a clear line-of-sight through the cell at the given position.
         /// </summary>
         /// <param name="position">The position of the cell to check.</param>
-        /// <returns>True if a character can see through the cell at the given position.</returns>
+        /// <returns>True if a character has a clear line-of-sight through the cell.</returns>
         public bool IsTransparent(Vector2Int position)
         {
             return _cells[position.x, position.y].IsTransparent;
-        }
-
-        /// <summary>
-        /// Enumerates all cells in the map.
-        /// </summary>
-        /// <returns>An enumerator that will iterate over every cell in the map.</returns>
-        public MapEnumerator GetAllCells()
-        {
-            return new MapEnumerator(this);
-        }
-
-        /// <summary>
-        /// Enumerates the cells along a line in the map.
-        /// </summary>
-        /// <param name="start">The start position of the line.</param>
-        /// <param name="end">The end position of the line.</param>
-        /// <returns>An enumerator that will iterate over every cell along a line int he map.</returns>
-        public MapLineEnumerator GetCellsAlongLine(Vector2Int start, Vector2Int end)
-        {
-            return new MapLineEnumerator(this, start, end);
         }
     }
 }

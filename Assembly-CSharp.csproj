@@ -43,7 +43,11 @@
   <ItemGroup>
      <Compile Include="Assets\World.cs" />
      <Folder Include="Assets" />
+     <Folder Include="Assets\Sprites" />
      <Folder Include="Assets\Scenes" />
+     <Folder Include="Assets\Presets" />
+     <Folder Include="Assets\Palettes" />
+     <Folder Include="Assets\Tiles" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.15f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
