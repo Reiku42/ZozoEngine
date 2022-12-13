@@ -13,7 +13,7 @@ namespace ZozoEngine.Tests.Tests
             var end = new Vector2Int(6, 4);
             var line = new Line(start, end);
 
-            var lineEnumerator = new LineEnumerator(line);
+            using var lineEnumerator = line.GetEnumerator();
 
             var expectedPositions = new Vector2Int[]
             {
@@ -46,11 +46,10 @@ namespace ZozoEngine.Tests.Tests
             var end = new Vector2Int(5, 0);
             var line = new Line(start, end);
 
-            var lineEnumerator = new LineEnumerator(line);
+            using var lineEnumerator = line.GetEnumerator();
 
             var expectedPositions = new Vector2Int[]
             {
-                new(0, 0),
                 new(1, 0),
                 new(2, 0),
                 new(3, 0),
@@ -58,10 +57,7 @@ namespace ZozoEngine.Tests.Tests
                 new(5, 0),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(expectedPositions.First()));
-
-            foreach (var expectedPosition in expectedPositions.Skip(1))
+            foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
                 Assert.That(result, Is.True);
@@ -81,11 +77,10 @@ namespace ZozoEngine.Tests.Tests
             var end = new Vector2Int(0, 5);
             var line = new Line(start, end);
 
-            var lineEnumerator = new LineEnumerator(line);
+            using var lineEnumerator = line.GetEnumerator();
 
             var cellPositions = new Vector2Int[]
             {
-                new(0, 0),
                 new(0, 1),
                 new(0, 2),
                 new(0, 3),
@@ -93,10 +88,7 @@ namespace ZozoEngine.Tests.Tests
                 new(0, 5),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(cellPositions.First()));
-
-            foreach (var cellPosition in cellPositions.Skip(1))
+            foreach (var cellPosition in cellPositions)
             {
                 var result = lineEnumerator.MoveNext();
                 Assert.That(result, Is.True);
@@ -112,17 +104,14 @@ namespace ZozoEngine.Tests.Tests
         [Test]
         public void Enumerates_points_on_diagonal_line()
         {
-            var size = new Vector2Int(7, 7);
-            var map = new Map(size);
             var start = new Vector2Int(1, 1);
             var end = new Vector2Int(5, 5);
             var line = new Line(start, end);
 
-            var lineEnumerator = new LineEnumerator(line);
+            using var lineEnumerator = line.GetEnumerator();
 
             var cellPositions = new Vector2Int[]
             {
-                new(0, 0),
                 new(1, 1),
                 new(2, 2),
                 new(3, 3),
@@ -130,10 +119,7 @@ namespace ZozoEngine.Tests.Tests
                 new(5, 5),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(cellPositions.First()));
-
-            foreach (var cellPosition in cellPositions.Skip(1))
+            foreach (var cellPosition in cellPositions)
             {
                 var result = lineEnumerator.MoveNext();
                 Assert.That(result, Is.True);

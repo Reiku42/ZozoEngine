@@ -11,7 +11,7 @@ namespace ZozoEngine.Tests.Tests
             var size = new Vector2Int(3, 3);
             var map = new Map(size);
 
-            var mapEnumerator = map.GetEnumerator();
+            using var mapEnumerator = map.GetEnumerator();
 
             for (var y = 0; y < size.y; y++)
             {
