@@ -18,9 +18,9 @@ namespace ZozoEngine
         private readonly int _sy;
 
         private int _err;
-
         private Vector2Int _current;
-        private bool _isReset;
+
+        private bool _isInitialized;
 
         /// <summary>
         /// Creates a new enumerator that iterates over all positions along the line.
@@ -39,8 +39,9 @@ namespace ZozoEngine
 
             _err = default;
             _current = default;
-            _isReset = default;
-            
+
+            _isInitialized = false;
+
             Reset();
         }
 
@@ -60,9 +61,12 @@ namespace ZozoEngine
         /// <returns>True if the enumerator still has positions along the line to iterate over.</returns>
         public bool MoveNext()
         {
-            if (_isReset)
+            if (!_isInitialized)
             {
-                _isReset = false;
+                _err = _dx - _dy;
+                _current = _line.Start;
+
+                _isInitialized = true;
                 return true;
             }
 
@@ -91,10 +95,7 @@ namespace ZozoEngine
 
         public void Reset()
         {
-            _err = _dx - _dy; 
-
-            _current = _line.Start;
-            _isReset = true;
+            _isInitialized = false;
         }
 
         public void Dispose()

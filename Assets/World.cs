@@ -34,6 +34,15 @@ namespace ZozoEngine
                 cell.IsWalkable = true;
             }
 
+            var center = new Vector2Int(15, 15);
+            var distance = 5;
+
+            foreach (var position in Geometry.GetSquare(center, distance))
+            {
+                ref var cell = ref _map[position];
+                cell.IsWalkable = true;
+            }
+
             foreach (var cell in _map)
             {
                 var tile = cell.IsWalkable ? _floor : _wall;

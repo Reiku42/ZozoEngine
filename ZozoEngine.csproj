@@ -41,12 +41,14 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Map.cs" />
-     <Compile Include="Assets\Scripts\Cell.cs" />
-     <Compile Include="Assets\Scripts\MapEnumerator.cs" />
-     <Compile Include="Assets\Scripts\LineEnumerator.cs" />
      <Compile Include="Assets\Scripts\Geometry.cs" />
      <Compile Include="Assets\Scripts\Line.cs" />
+     <Compile Include="Assets\Scripts\Cell.cs" />
+     <Compile Include="Assets\Scripts\Map.cs" />
+     <Compile Include="Assets\Scripts\LineEnumerator.cs" />
+     <Compile Include="Assets\Scripts\MapEnumerator.cs" />
+     <Compile Include="Assets\Scripts\RectangleEnumerator.cs" />
+     <Compile Include="Assets\Scripts\Rectangle.cs" />
      <None Include="Assets\Scripts\ZozoEngine.asmdef" />
      <Folder Include="Assets\Scripts" />
      <Reference Include="UnityEngine">

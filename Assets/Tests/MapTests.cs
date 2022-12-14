@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 
-namespace ZozoEngine.Tests.Tests
+namespace ZozoEngine.Tests
 {
     public sealed class MapTests
     {

@@ -45,6 +45,7 @@
      <Folder Include="Assets" />
      <Folder Include="Assets\Sprites" />
      <Folder Include="Assets\Scenes" />
+     <Folder Include="Assets\Prefabs" />
      <Folder Include="Assets\Presets" />
      <Folder Include="Assets\Palettes" />
      <Folder Include="Assets\Tiles" />
