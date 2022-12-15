@@ -46,9 +46,8 @@
      <Compile Include="Assets\Scripts\Cell.cs" />
      <Compile Include="Assets\Scripts\Map.cs" />
      <Compile Include="Assets\Scripts\LineEnumerator.cs" />
-     <Compile Include="Assets\Scripts\MapEnumerator.cs" />
-     <Compile Include="Assets\Scripts\RectangleEnumerator.cs" />
      <Compile Include="Assets\Scripts\Rectangle.cs" />
+     <Compile Include="Assets\Scripts\RectangleEnumerator.cs" />
      <None Include="Assets\Scripts\ZozoEngine.asmdef" />
      <Folder Include="Assets\Scripts" />
      <Reference Include="UnityEngine">

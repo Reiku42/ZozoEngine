@@ -25,8 +25,8 @@ namespace ZozoEngine
 
         private void Start()
         {
-            var start = new Vector2Int(0, 0);
-            var end = _map.ClampToBounds(_map.Size);
+            var start = _map.Bounds.Minimum;
+            var end = _map.Bounds.Maximum;
 
             foreach (var point in Geometry.GetLine(start, end))
             {
@@ -43,10 +43,11 @@ namespace ZozoEngine
                 cell.IsWalkable = true;
             }
 
-            foreach (var cell in _map)
+            foreach (var point in _map.Bounds)
             {
+                ref var cell = ref _map[point];
                 var tile = cell.IsWalkable ? _floor : _wall;
-                _tilemap.SetTile((Vector3Int)cell.Position, tile);
+                _tilemap.SetTile((Vector3Int)point, tile);
             }
         }
     }

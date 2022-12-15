@@ -15,7 +15,9 @@ namespace ZozoEngine
         /// <param name="size">The size of the map.</param>
         public Map(Vector2Int size)
         {
-            Size = size;
+            var minimum = Vector2Int.zero;
+            var maximum = size - Vector2Int.one;
+            Bounds = new Rectangle(minimum, maximum);
 
             _cells = new Cell[size.x, size.y];
 
@@ -36,37 +38,9 @@ namespace ZozoEngine
         public ref Cell this[Vector2Int position] => ref _cells[position.x, position.y];
 
         /// <summary>
-        /// The size of the map.
+        /// The bounds of the map.
         /// </summary>
-        public Vector2Int Size { get; }
-
-        /// <summary>
-        /// Gets an enumerator that iterates over all cells in the map.
-        /// </summary>
-        /// <returns>An enumerator that iterates over all cells in the map</returns>
-        public MapEnumerator GetEnumerator() => new(this);
-
-        /// <summary>
-        /// Checks if the given position is within the bounds of the map.
-        /// </summary>
-        /// <param name="position">The position to check.</param>
-        /// <returns>True if the position is within the bounds of the map.</returns>
-        public bool IsInBounds(Vector2Int position)
-        {
-            return position.x >= 0 && position.x < Size.x && position.y >= 0 && position.y < Size.y;
-        }
-
-        /// <summary>
-        /// Clamps the given position so it is contained within the bounds of the map.
-        /// </summary>
-        /// <param name="position">The position to clamp.</param>
-        /// <returns>The position clamped to the bounds of the map.</returns>
-        public Vector2Int ClampToBounds(Vector2Int position)
-        {
-            var x = Mathf.Clamp(position.x, 0, Size.x - 1);
-            var y = Mathf.Clamp(position.y, 0, Size.y - 1);
-            return new Vector2Int(x, y);
-        }
+        public Rectangle Bounds { get; }
 
         /// <summary>
         /// Checks if a character is capable of walking through the cell at the given position.

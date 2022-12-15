@@ -45,9 +45,8 @@
      <Compile Include="Assets\Tests\GeometryTests.cs" />
      <Compile Include="Assets\Tests\MapTests.cs" />
      <Compile Include="Assets\Tests\CellTests.cs" />
-     <Compile Include="Assets\Tests\MapEnumeratorTests.cs" />
-     <Compile Include="Assets\Tests\LineTests.cs" />
      <Compile Include="Assets\Tests\RectangleTests.cs" />
+     <Compile Include="Assets\Tests\LineTests.cs" />
      <Folder Include="Assets\Tests" />
      <None Include="Assets\Tests\ZozoEngine.Tests.asmdef" />
      <Reference Include="UnityEngine">
