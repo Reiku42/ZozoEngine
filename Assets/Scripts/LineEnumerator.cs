@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ZozoEngine
 {
     /// <summary>
-    /// Iterates over all the positions along a line using Bresenham's line algorithm.
+    /// Iterates over all the points along a line using Bresenham's line algorithm.
     /// </summary>
     public struct LineEnumerator : IEnumerator<Vector2Int>
     {
@@ -19,10 +19,10 @@ namespace ZozoEngine
         private bool _isReset;
 
         /// <summary>
-        /// Creates a new enumerator that iterates over all positions along the line.
+        /// Creates a new enumerator that iterates over all points along the given line.
         /// </summary>
         /// <param name="line">The line to enumerate.</param>
-        /// <returns>An enumerator that will iterate over all positions along the line.</returns>
+        /// <returns>An enumerator that iterates over all points along the given line.</returns>
         public LineEnumerator(Line line)
         {
             _line = line;
@@ -39,19 +39,19 @@ namespace ZozoEngine
         }
 
         /// <summary>
-        /// The current position the enumerator is iterating over.
+        /// The current point the enumerator is iterating over.
         /// </summary>
         public Vector2Int Current => _current;
 
         /// <summary>
-        /// The current position the enumerator is iterating over.
+        /// The current point the enumerator is iterating over.
         /// </summary>
         object IEnumerator.Current => Current;
 
         /// <summary>
-        /// Advances the enumerator to the next position along the line.
+        /// Advances the enumerator to the next point along the line.
         /// </summary>
-        /// <returns>True if the enumerator still has positions to iterate over.</returns>
+        /// <returns>True if the enumerator still has points to iterate over.</returns>
         public bool MoveNext()
         {
             if (_isReset)
@@ -83,6 +83,9 @@ namespace ZozoEngine
             return true;
         }
 
+        /// <summary>
+        /// Resets the line to the first point along the line.
+        /// </summary>
         public void Reset()
         {
             _err = _dx - _dy;

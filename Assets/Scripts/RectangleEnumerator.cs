@@ -9,6 +9,11 @@ namespace ZozoEngine
         private readonly Rectangle _rectangle;
         private Vector2Int _current;
 
+        /// <summary>
+        /// Creates a new enumerator that iterates over all points inside the given rectangle.
+        /// </summary>
+        /// <param name="rectangle">The rectangle to enumerate.</param>
+        /// <returns>An enumerator that iterates over all points inside the given rectangle.</returns>
         public RectangleEnumerator(Rectangle rectangle)
         {
             _rectangle = rectangle;
@@ -17,19 +22,19 @@ namespace ZozoEngine
         }
 
         /// <summary>
-        /// The current position the enumerator is iterating over.
+        /// The current point the enumerator is iterating over.
         /// </summary>
         public Vector2Int Current => _current;
 
         /// <summary>
-        /// The current position the enumerator is iterating over.
+        /// The current point the enumerator is iterating over.
         /// </summary>
         object IEnumerator.Current => Current;
 
         /// <summary>
-        /// Advances the enumerator to the next position inside the rectangle.
+        /// Advances the enumerator to the next point inside the rectangle.
         /// </summary>
-        /// <returns>True if the enumerator still has positions to iterate over.</returns>
+        /// <returns>True if the enumerator still has points to iterate over.</returns>
         public bool MoveNext()
         {
             _current.x++;
@@ -43,6 +48,9 @@ namespace ZozoEngine
             return _current.y <= _rectangle.Maximum.y;
         }
 
+        /// <summary>
+        /// Resets the enumerator to the first point inside the rectangle.
+        /// </summary>
         public void Reset()
         {
             _current = _rectangle.Minimum + new Vector2Int(-1, 0);
