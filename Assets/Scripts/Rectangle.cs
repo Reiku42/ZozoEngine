@@ -8,16 +8,14 @@ namespace ZozoEngine
     public readonly struct Rectangle
     {
         /// <summary>
-        /// Create a new rectangle for the given position and size.
+        /// Create a new rectangle for the given start and end positions.
         /// </summary>
-        /// <param name="position">The position of the rectangle.</param>
-        /// <param name="size">The size of the rectangle.</param>
-        public Rectangle(Vector2Int position, Vector2Int size)
+        /// <param name="start">The start position of the rectangle.</param>
+        /// <param name="end">The end size of the rectangle.</param>
+        public Rectangle(Vector2Int start, Vector2Int end)
         {
-            var delta = position + size;
-
-            Minimum = Vector2Int.Min(position, delta);
-            Maximum = Vector2Int.Max(position, delta);
+            Minimum = Vector2Int.Min(start, end);
+            Maximum = Vector2Int.Max(start, end);
         }
 
         /// <summary>

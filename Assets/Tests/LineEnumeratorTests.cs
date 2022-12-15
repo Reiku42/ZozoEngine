@@ -25,9 +25,6 @@ namespace ZozoEngine.Tests
                 new(6, 4),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -39,9 +36,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -61,9 +55,6 @@ namespace ZozoEngine.Tests
                 new(5, 0),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -75,9 +66,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -97,9 +85,6 @@ namespace ZozoEngine.Tests
                 new(0, 5),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -111,9 +96,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -133,9 +115,6 @@ namespace ZozoEngine.Tests
                 new(5, 5),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -147,9 +126,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -170,9 +146,6 @@ namespace ZozoEngine.Tests
                 new(10, 5),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -184,9 +157,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -207,9 +177,6 @@ namespace ZozoEngine.Tests
                 new(5, 10),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -221,9 +188,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -244,9 +208,6 @@ namespace ZozoEngine.Tests
                 new(10, 10),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -258,9 +219,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -283,9 +241,6 @@ namespace ZozoEngine.Tests
                 new(1, 9),
                 new(0, 10),
             };
-
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
 
             foreach (var expectedPosition in expectedPositions)
             {
@@ -321,9 +276,6 @@ namespace ZozoEngine.Tests
                 new(10, 7),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -335,9 +287,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
 
         [Test]
@@ -358,9 +307,6 @@ namespace ZozoEngine.Tests
                 new(0, 7),
             };
 
-            var initialPosition = lineEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
             foreach (var expectedPosition in expectedPositions)
             {
                 var result = lineEnumerator.MoveNext();
@@ -372,9 +318,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = lineEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-            
-            var finalPosition = lineEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(expectedPositions.Last()));
         }
     }
 }

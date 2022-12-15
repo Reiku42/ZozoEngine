@@ -13,12 +13,9 @@ namespace ZozoEngine.Tests
 
             using var rectangleEnumerator = Geometry.GetRectangle(minimum, maximum).GetEnumerator();
 
-            var initialPosition = rectangleEnumerator.Current;
-            Assert.That(initialPosition, Is.EqualTo(default(Vector2Int)));
-
-            for (var y = minimum.y; y < maximum.y; y++)
+            for (var y = minimum.y; y <= maximum.y; y++)
             {
-                for (var x = minimum.x; x < maximum.x; x++)
+                for (var x = minimum.x; x <= maximum.x; x++)
                 {
                     var expectedPosition = new Vector2Int(x, y);
 
@@ -32,9 +29,6 @@ namespace ZozoEngine.Tests
 
             var finalResult = rectangleEnumerator.MoveNext();
             Assert.That(finalResult, Is.False);
-
-            var finalPosition = rectangleEnumerator.Current;
-            Assert.That(finalPosition, Is.EqualTo(maximum - Vector2Int.one));
         }
     }
 }

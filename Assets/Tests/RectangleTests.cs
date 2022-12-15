@@ -6,27 +6,27 @@ namespace ZozoEngine.Tests
     public sealed class RectangleTests
     {
         [Test]
-        public void Initializes_minimum_and_maximum()
+        public void Initializes_start_and_end()
         {
-            var position = new Vector2Int(5, 5);
-            var size = new Vector2Int(10, 10);
+            var start = new Vector2Int(5, 5);
+            var end = new Vector2Int(10, 10);
 
-            var rectangle = new Rectangle(position, size);
+            var rectangle = new Rectangle(start, end);
             
-            Assert.That(rectangle.Minimum, Is.EqualTo(position));
-            Assert.That(rectangle.Maximum, Is.EqualTo(position + size));
+            Assert.That(rectangle.Minimum, Is.EqualTo(start));
+            Assert.That(rectangle.Maximum, Is.EqualTo(end));
         }
 
         [Test]
         public void Initializes_minimum_and_maximum_from_negative_size()
         {
-            var position = new Vector2Int(5, 5);
-            var size = new Vector2Int(-10, -10);
+            var start = new Vector2Int(5, 5);
+            var end = new Vector2Int(-10, -10);
 
-            var rectangle = new Rectangle(position, size);
+            var rectangle = new Rectangle(start, end);
             
-            Assert.That(rectangle.Minimum, Is.EqualTo(new Vector2Int(-5, -5)));
-            Assert.That(rectangle.Maximum, Is.EqualTo(new Vector2Int(5, 5)));
+            Assert.That(rectangle.Minimum, Is.EqualTo(end));
+            Assert.That(rectangle.Maximum, Is.EqualTo(start));
         }
     }
 }

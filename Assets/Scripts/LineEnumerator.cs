@@ -10,17 +10,13 @@ namespace ZozoEngine
     public struct LineEnumerator : IEnumerator<Vector2Int>
     {
         private readonly Line _line;
-
         private readonly int _dx;
         private readonly int _dy;
-
         private readonly int _sx;
         private readonly int _sy;
-
         private int _err;
         private Vector2Int _current;
-
-        private bool _isInitialized;
+        private bool _isReset;
 
         /// <summary>
         /// Creates a new enumerator that iterates over all positions along the line.
@@ -30,17 +26,14 @@ namespace ZozoEngine
         public LineEnumerator(Line line)
         {
             _line = line;
-
             _dx = Mathf.Abs(_line.End.x - _line.Start.x);
             _dy = Mathf.Abs(_line.End.y - _line.Start.y);
-
             _sx = _line.Start.x < _line.End.x ? 1 : -1;
             _sy = _line.Start.y < _line.End.y ? 1 : -1;
 
             _err = default;
             _current = default;
-
-            _isInitialized = false;
+            _isReset = default;
 
             Reset();
         }
@@ -58,15 +51,12 @@ namespace ZozoEngine
         /// <summary>
         /// Advances the enumerator to the next position along the line.
         /// </summary>
-        /// <returns>True if the enumerator still has positions along the line to iterate over.</returns>
+        /// <returns>True if the enumerator still has positions to iterate over.</returns>
         public bool MoveNext()
         {
-            if (!_isInitialized)
+            if (_isReset)
             {
-                _err = _dx - _dy;
-                _current = _line.Start;
-
-                _isInitialized = true;
+                _isReset = false;
                 return true;
             }
 
@@ -95,7 +85,9 @@ namespace ZozoEngine
 
         public void Reset()
         {
-            _isInitialized = false;
+            _err = _dx - _dy;
+            _current = _line.Start;
+            _isReset = true;
         }
 
         public void Dispose()
